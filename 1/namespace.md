@@ -127,10 +127,12 @@ a certain function signature and is used with the
 `v8::ObjectTemplate::SetAccessor()` method. 
 
 ```c++
-obj->SetAccessor(v8::String::New("someProperty"), nativeSetter); 
+obj->SetAccessor(v8::String::New("someProperty"), myNativeGetter, nativeSetter); 
 ```
 
-The native function `nativeSetter` is of type `v8::AccessorSetterCallback`
+
+* The native function `nativeGetter` is of type `v8::AccessorGetterCallback`
+* The native function `nativeSetter` is of type `v8::AccessorSetterCallback`
 
 ### v8::FunctionCallback
 
@@ -141,6 +143,32 @@ is used with the `v8::FunctionTemplate` class.
 v8::Local<v8::FunctionTemplate> fn_tpl = v8::FunctionTemplate::New(myNativeCallback);
 ```
 
-The native function `myNativeCallback` is of type `v8::FunctionCallback`
+* The native function `myNativeCallback` is of type `v8::FunctionCallback`
 
+### v8::NamedPropertyGetterCallback
+
+This type defines a function that is called when a named property is
+accessed on an object created from a `v8::ObjectTemplate` instance. This
+type is used by the `v8::ObjectTemplate::SetNamedPropertyHandler()`
+method.
+
+```c++
+obj_tpl->SetNamedPropertyHandler(myNativeNamedPropertyGetter);
+```
+
+* The native function `myNativeNamedPropertyGetter` is of type `v8::NamedPropertyGetterCallback` 
+
+### v8::NamedPropertySetterCallback
+
+This type defines a function that is called when a named property is set
+on an object created from a `v8::ObjectTemplate` instance. This type is
+used by the `v8::ObjectTemplate::SetNamedPropertyHandler()` method.
+
+```c++
+obj_tpl->SetNamedPropertyHandler(myNativeNamedPropertyGetter, myNativeNamedPropertySetter);
+```
+
+
+* The native function `myNativeNamedPropertyGetter` is of type `v8::NamedPropertyGetterCallback` 
+* The native function `myNativeNamedPropertySetter` is of type `v8::NamedPropertySetterCallback` 
 
