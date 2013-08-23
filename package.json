@@ -1,0 +1,22 @@
+{
+  "name": "learn-v8",
+  "version": "0.0.1",
+  "description": "Lessons to learning V8",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/learn-v8-node/v8.git"
+  },
+  "keywords": [
+    "learn",
+    "v8"
+  ],
+  "author": "Joseph Werle",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/learn-v8-node/v8/issues"
+  }
+}
