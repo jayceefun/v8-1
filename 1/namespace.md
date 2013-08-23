@@ -48,7 +48,9 @@ will be naming confliction.
 The `v8` namespace houses many different parts of the API that makes up
 the `v8` API as we know it. Some of these members include functions,
 typedefs, and enumerations. The `v8` namespace also contains the classes
-that you will end up working with most.
+that you will end up working with most. Below you will find *most* of
+the members in the `v8` namespace. Some were left out due to ignorance,
+lack of importance, or privacy.
 
 ## Functions
 
@@ -102,9 +104,43 @@ v8::ThrowException(v8::String::New("Oops!"));
 
 Type definitions declared at the root of the `v8` namespace.
 
-### v8::AccessorGetter
 
-A type used for an accessor (getter/setter) as callback functions when
-getting or setting a particular property on an object. This type defines
+
+### v8::AccessorGetterCallback
+
+A type used for a getter accessor as callback function when
+getting a particular property on an object. This type defines
 a certain function signature and is used with the
 `v8::ObjectTemplate::SetAccessor()` method. 
+
+```c++
+obj->SetAccessor(v8::String::New("someProperty"), nativeGetter); 
+```
+
+The native function `nativeGetter` is of type `v8::AccessorGetterCallback`
+
+### v8::AccessorSetterCallback
+
+A type used for a setter accessor as callback function when
+setting a particular property on an object. This type defines
+a certain function signature and is used with the
+`v8::ObjectTemplate::SetAccessor()` method. 
+
+```c++
+obj->SetAccessor(v8::String::New("someProperty"), nativeSetter); 
+```
+
+The native function `nativeSetter` is of type `v8::AccessorSetterCallback`
+
+### v8::FunctionCallback
+
+A typed used to define a native callback for a JavaScript function. It
+is used with the `v8::FunctionTemplate` class.
+
+```c++
+v8::Local<v8::FunctionTemplate> fn_tpl = v8::FunctionTemplate::New(myNativeCallback);
+```
+
+The native function `myNativeCallback` is of type `v8::FunctionCallback`
+
+
